@@ -1,0 +1,19 @@
+package fr.codageerreur;
+
+public class Heh {
+	public int inversePhi(int n, int m, int e) {
+		String binaryOfE = Integer.toBinaryString(e);
+		int length = binaryOfE.length();
+		int index = 1;
+		int result = 0;
+		for (int i = length - 1; i >= 0; i--) {
+			index++;
+			int value = Character.getNumericValue(binaryOfE.charAt(i));
+			if (value == 1) {
+				result += this.binomial(length - 1 - i, index);
+			}
+		}
+		return result;
+	}
+
+}

@@ -1,0 +1,31 @@
+package fr.codageerreur;
+
+import java.util.Scanner;
+
+public class TestEncodageEnumerative {
+
+	public static void main(String[] args) {
+		
+		EncodageEnumerative enc = new EncodageEnumerative();
+
+		Scanner clavier = new Scanner(System.in);
+		
+		System.out.println("entrez la valeur de n : ");
+		enc.setN(clavier.nextInt());
+		clavier.nextLine();
+		
+		System.out.println("entrez la valeur de t : ");
+		enc.setT(clavier.nextInt());
+		clavier.nextLine();
+		
+		System.out.println("entrez la valeur de x : ");
+		enc.setX(clavier.nextInt());
+		clavier.nextLine();
+
+		clavier.close();
+
+		System.out.printf("phi(%d , %d)(%d) = %d", enc.n, enc.t, enc.x, enc.phi());
+		
+	}
+
+}

@@ -1,0 +1,15 @@
+package fr.codageerreur;
+
+import java.util.Scanner;
+
+public class TestEncodageEnumerative {
+
+	public static void main(String[] args) {
+		Scanner clavier = new Scanner(System.in);
+		EncodageEnumerative enc = new EncodageEnumerative(6,4,8);
+		System.out.println(enc.phi());
+		
+
+	}
+
+}

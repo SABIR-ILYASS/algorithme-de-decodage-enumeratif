@@ -1,0 +1,9 @@
+package fr.codageerreur;
+
+public class TestEncodageEnumerative {
+
+	public static void main(String[] args) {
+
+	}
+
+}

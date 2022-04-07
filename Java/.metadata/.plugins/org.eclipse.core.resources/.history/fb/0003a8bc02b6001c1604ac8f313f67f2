@@ -1,0 +1,102 @@
+package fr.codageerreur;
+
+public class EncodageEnumerative {
+	
+	protected int t;
+	protected int n;
+	protected int x;
+	
+	// getters and setters
+	public void setN(int n) {
+		this.n = n;
+	}
+	
+	public void setT(int t) {
+		this.t = t;
+	}
+	
+	public void setX(int x) {
+		this.x = x;
+	}
+	
+	public int getN() {
+		return this.n;
+	}
+	
+	public int getT() {
+		return t;
+	}
+	
+	 public int getX() {
+		return x;
+	}
+	
+	public long factorielle(int number) {
+		long fact = 1;
+		for (int i = 2; i <= number; i++)
+			fact *= i;
+		return fact;
+	}
+	
+	public long arrangements(int number, int k) {
+		if (k > number)
+			return 0;
+		else {
+			long arrangement = 1;
+			for (int i = number - k + 1; i <= number; i++)
+				arrangement *= i;
+			return arrangement;
+		}
+	}
+	
+	public long binomial(int i,int j) {
+		return (long) (this.arrangements(i, j) / this.factorielle(j));
+	}
+	
+	public int inverseBinomial(int x, int j) {
+		int i = 0;
+		while ( this.binomial(i, j) <= x)
+			i++;
+		return (i - 1);
+	}
+	
+	// phi veut -1 si la valeur phi_(n,m)(x) est non définie
+	public int phi() {
+		int n = this.getN();
+		int t = this.getT();
+		int x = this.getX();
+		int phi = 0;
+		
+		if ( x < 0 || x >= this.binomial(n, t)) {
+			phi = -1;
+		}
+
+		else {
+			int j = t;
+			while(j > 0) {
+				int ij = this.inverseBinomial(x, j);
+				x -= this.binomial(ij, j);
+				phi += (int) Math.pow(2, ij);
+				j--;
+			}
+		}
+		return phi;
+	}
+	
+	public int inversePhi(int n, int m, int e) {
+		String binaryOfE = Integer.toBinaryString(e);
+		int length = binaryOfE.length();
+		int index = 1;
+		int result = 0;
+		for (int i = length - 1; i >= 0; i--) {
+			int value = Character.getNumericValue(binaryOfE.charAt(i));
+			if (value == 1) {
+				result += this.binomial(length - 1 - i, index);
+				System.out.printf("(%d, %d)", length - 1 -i, index);
+				index++;
+			}
+		}
+		return result;
+	}
+	
+}

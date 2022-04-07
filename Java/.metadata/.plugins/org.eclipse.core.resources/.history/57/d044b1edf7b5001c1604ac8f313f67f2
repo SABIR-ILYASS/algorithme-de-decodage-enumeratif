@@ -1,0 +1,56 @@
+package fr.codageerreur;
+
+public class EncodageEnumerative {
+	
+	private int t;
+	private int n;
+	private int x;
+	
+	EncodageEnumerative(int n, int t, int x){
+		n = this.n; t = this.t; x = this.x;
+	}
+	
+	public long factorielle(int number) {
+		long fact = 1;
+		for (int i = 2; i <= number; i++)
+			fact *= i;
+		return fact;
+	}
+	
+	public long arrangements(int number, int k) {
+		if (k > number)
+			return 0;
+		else {
+			long arrangement = 1;
+			for (int i = number - k + 1; i <= number; i++)
+				arrangement *= i;
+			return arrangement;
+		}
+	}
+	
+	public long binomial(int i,int j) {
+		return (long) (this.arrangements(i, j) / this.factorielle(j));
+	}
+	
+	public int inverseBinomial(int x, int j) {
+		int i = 0;
+		while ( this.binomial(i, j) <= x)
+			i++;
+		return (i - 1);
+	}
+	
+	public long phi() {
+		int x = this.x, t = this.t, n = this.n;
+		if ( x < 0 | x >= this.binomial(n, t))
+			return -1;
+		else {
+			int j = t;
+			int phi = 0;
+			while(j > 0) {
+				int ij = this.inverseBinomial(x, j);
+				phi += Math.pow(2, ij);
+			}
+			return phi;
+		}
+	}
+}
